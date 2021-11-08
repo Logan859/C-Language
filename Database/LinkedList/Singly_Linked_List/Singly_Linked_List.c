@@ -196,6 +196,20 @@ void Remove_Node_Of_Position(void)
 	}
 }
 
+/*
+ * We assign the temp node to the next of the current node and 
+ * then reverse the link by assign the current->next to the previous node. 
+ * And then increment the previous node to the current node and 
+ * then the current node to the temp node.
+ * And then we finally return the head node.
+ 
+ * Time complexity: 
+ * O(N) because we iterate through each element at least once. 
+
+ * Space complexity: 
+ * O(1) because no extra space was used here.
+ 
+ */
 void Reverse_The_Linked_List_Iterative(void)
 {
 	NODE *CurrentNode = Head;
@@ -212,6 +226,21 @@ void Reverse_The_Linked_List_Iterative(void)
 	Head = PrevNode;
 }
 
+/*
+ * The most important thing to remember in this approach is that the recursive approach uses a stack. 
+ * The compiler allocates stack memory after each recursive call, and this solution can run out of memory 
+ * in case of very huge linked lists (think billions of elements).
+ *  
+ * We recursively iterate to each node in the list until we reach the last node and return the new head. 
+ * We have to note that the last node in this approach will become the new head of the list.
+ * On the return path, each node is going to append itself to the end of the partially reversed linked list.
+ 
+ * Time Complexity: 
+ * O(N) because we iterate through each element at least once. 
+
+ * Space complexity: 
+ * O(N) because we create a recursive stack each time we call the reverse function recursively. 
+ */
 NODE * Reverse_The_Linked_List_Recursive(NODE * HeadNode)
 {
 	if((HeadNode == NULL) || (HeadNode->NextNode == NULL))
