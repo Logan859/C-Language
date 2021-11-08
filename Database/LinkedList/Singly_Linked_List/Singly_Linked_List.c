@@ -256,6 +256,29 @@ NODE * Reverse_The_Linked_List_Recursive(NODE * HeadNode)
 	return Rest;
 }
 
+/* Recursive function to reverse a given linked list. It reverses the
+ * given linked list by fixing the head pointer and then `.next`
+ * pointers of every node in reverse order
+ * 
+ * Usege : reverse (head, NULL, head);
+ *
+ */
+void Reverse_The_Linked_List_Recursive_2(NODE* curr, NODE* prev, head* head)
+{
+    // base case: end of the list reached
+    if (curr == NULL)
+    {
+        // fix head pointer
+        head = prev;
+        return;
+    }
+ 
+    // recur for the next node and pass the current node as a previous node
+    reverse(curr->next, curr, head);
+ 
+    // fix current node (nodes following it are already fixed)
+    curr->next = prev;
+}
 
 void Swap_Two_Nodes(void)
 {
