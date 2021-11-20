@@ -3,10 +3,10 @@
  * Searching Algorithms are designed to check for an element or retrieve an element 
  * from any data structure where it is stored. Based on the type of search operation,
  * these algorithms are generally classified into two categories:
- 
+
  * 1) Sequential Search: In this, the list or array is traversed sequentially and every 
  * element is checked. For example: Linear Search.
- 
+
  * 2) Interval Search: These algorithms are specifically designed for searching in sorted 
  * data-structures. These type of searching algorithms are much more efficient than Linear 
  * Search as they repeatedly target the center of the search structure and divide the search 
@@ -51,29 +51,29 @@ int LinearSearch(int arr[], int n, int x)
  */
 int interpolationSearch(int arr[], int lo, int hi, int x)
 {
-    int pos;
-    // Since array is sorted, an element present
-    // in array must be in range defined by corner
-    if (lo <= hi && x >= arr[lo] && x <= arr[hi]) {
-        // Probing the position with keeping
-        // uniform distribution in mind.
-        pos = lo
-              + (((double)(hi - lo) / (arr[hi] - arr[lo]))
-                 * (x - arr[lo]));
- 
-        // Condition of target found
-        if (arr[pos] == x)
-            return pos;
- 
-        // If x is larger, x is in right sub array
-        if (arr[pos] < x)
-            return interpolationSearch(arr, pos + 1, hi, x);
- 
-        // If x is smaller, x is in left sub array
-        if (arr[pos] > x)
-            return interpolationSearch(arr, lo, pos - 1, x);
-    }
-    return -1;
+	int pos;
+	// Since array is sorted, an element present
+	// in array must be in range defined by corner
+	if (lo <= hi && x >= arr[lo] && x <= arr[hi]) {
+		// Probing the position with keeping
+		// uniform distribution in mind.
+		pos = lo
+			+ (((double)(hi - lo) / (arr[hi] - arr[lo]))
+					* (x - arr[lo]));
+
+		// Condition of target found
+		if (arr[pos] == x)
+			return pos;
+
+		// If x is larger, x is in right sub array
+		if (arr[pos] < x)
+			return interpolationSearch(arr, pos + 1, hi, x);
+
+		// If x is smaller, x is in left sub array
+		if (arr[pos] > x)
+			return interpolationSearch(arr, lo, pos - 1, x);
+	}
+	return -1;
 }
 
 // A recursive binary search function. It returns
@@ -81,27 +81,27 @@ int interpolationSearch(int arr[], int lo, int hi, int x)
 // otherwise -1
 int BinarySearch_Recursive(int arr[], int l, int r, int x)
 {
-    if (r >= l) {
-        int mid = l + (r - l) / 2;
- 
-        // If the element is present at the middle
-        // itself
-        if (arr[mid] == x)
-            return mid;
- 
-        // If element is smaller than mid, then
-        // it can only be present in left subarray
-        if (arr[mid] > x)
-            return BinarySearch_Recursive(arr, l, mid - 1, x);
- 
-        // Else the element can only be present
-        // in right subarray
-        return BinarySearch_Recursive(arr, mid + 1, r, x);
-    }
- 
-    // We reach here when element is not
-    // present in array
-    return -1;
+	if (r >= l) {
+		int mid = l + (r - l) / 2;
+
+		// If the element is present at the middle
+		// itself
+		if (arr[mid] == x)
+			return mid;
+
+		// If element is smaller than mid, then
+		// it can only be present in left subarray
+		if (arr[mid] > x)
+			return BinarySearch_Recursive(arr, l, mid - 1, x);
+
+		// Else the element can only be present
+		// in right subarray
+		return BinarySearch_Recursive(arr, mid + 1, r, x);
+	}
+
+	// We reach here when element is not
+	// present in array
+	return -1;
 }
 
 // A iterative binary search function. It returns
@@ -109,30 +109,30 @@ int BinarySearch_Recursive(int arr[], int l, int r, int x)
 // otherwise -1
 int BinarySearch(int arr[], int l, int r, int x)
 {
-    while (l <= r)
+	while (l <= r)
 	{
-        int m = l + (r - l) / 2;
- 
-        // Check if x is present at mid
-        if (arr[m] == x)
+		int m = l + (r - l) / 2;
+
+		// Check if x is present at mid
+		if (arr[m] == x)
 		{
-            return m;
+			return m;
 		}
-        // If x greater, ignore left half
-        if (arr[m] < x)
+		// If x greater, ignore left half
+		if (arr[m] < x)
 		{
-            l = m + 1;
+			l = m + 1;
 		}
-        // If x is smaller, ignore right half
-        else
+		// If x is smaller, ignore right half
+		else
 		{
-            r = m - 1;
+			r = m - 1;
 		}
-    }
- 
-    // if we reach here, then element was
-    // not present
-    return -1;
+	}
+
+	// if we reach here, then element was
+	// not present
+	return -1;
 }
 
 
@@ -146,8 +146,8 @@ int main(void)
 	int result = LinearSearch(arr, n, x);
 	//int result = BinarySearch(arr, 0, n - 1, x);
 	//int result = BinarySearch_Recursive(arr, 0, n - 1, x);
-    //int index = interpolationSearch(arr, 0, n - 1, x);
-	
+	//int index = interpolationSearch(arr, 0, n - 1, x);
+
 	(result == -1)
 		? printf("Element is not present in array")
 		: printf("Element is present at index %d", result);
